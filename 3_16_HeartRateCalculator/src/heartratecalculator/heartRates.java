@@ -2,6 +2,7 @@ package heartratecalculator;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,14 +38,12 @@ public class heartRates {
     
     public void displayDetails()
     {
-        System.out.println("");
-        System.out.println("Person Details");
-        System.out.println("Name: " + firstName + " " + lastName);
-        dateOfBirth.display();
-        System.out.println("Age: " + dateOfBirth.currentAge());
-        System.out.println("Maximum Heartrate: " + maxHeartRate);
-        System.out.println("Target Heartrate between " + (float)maxHeartRate*0.5 + " and " + (float)maxHeartRate*0.85 );
-        System.out.println("");
+        String details;
+        details = "Person Details\nName: " + firstName + " " + 
+                lastName + "\n" + dateOfBirth.returnString() + "\nAge: " + 
+                dateOfBirth.currentAge() + "\nMaximum Heartrate: " + maxHeartRate + 
+                "\nTarget Heartrate between " + (float)maxHeartRate*0.5 + " and " + (float)maxHeartRate*0.85;
+        JOptionPane.showMessageDialog(null, details);
     }
     
     public void calculateMaxHeartRate()
@@ -63,6 +62,7 @@ class date {
     {
         Date current = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        //System.out.println("Today's date: " + dateFormat.format(current));
         return new date(dateFormat.format(current));
     }
     
@@ -89,9 +89,9 @@ class date {
         this.year = cloneDate.year;
     }
     
-    public void display()
+    public String returnString()
     {
-        System.out.println("Date of birth: " + day + "/" + month + "/" + year);
+        return "Date of birth: " + day + "/" + month + "/" + year;
     }
     
     public int currentAge()
